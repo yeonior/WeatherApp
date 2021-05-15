@@ -59,8 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				A272C85A264EE2E7007F1232 /* Models */,
-				A272C85B264EE2F3007F1232 /* View Controllers */,
 				A272C85C264EE2FB007F1232 /* Views */,
+				A272C85B264EE2F3007F1232 /* View Controllers */,
 				A272C85E264EE353007F1232 /* Extensions */,
 				A272C85D264EE32C007F1232 /* Supporting Files */,
 			);
@@ -332,7 +332,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U3JHK4U826;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = "WeatherApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -351,7 +351,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U3JHK4U826;
-				INFOPLIST_FILE = WeatherApp/Info.plist;
+				INFOPLIST_FILE = "WeatherApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
