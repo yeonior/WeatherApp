@@ -8,6 +8,7 @@
 import Foundation
 
 struct NetworkWeatherManager {
+    
     func fetchCurrentWeather(forCity city: String) {
         let string = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)"
         guard let url = URL(string: string) else { return }
