@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var feelsLikeTemperatureLabel: UILabel!
     
     var networkWeatherManager = NetworkWeatherManager()
+    lazy var locationManager: CLLocationManager = {
+        let lm = CLLocationManager()
+        lm.delegate = self
+        lm.desiredAccuracy = kCLLocationAccuracyKilometer
+        lm.requestWhenInUseAuthorization()
+        return lm
+    }()
     
     @IBAction func searchPressed(_ sender: UIButton) {
         self.presentSearchAlertController(withTitle: "Enter city name", message: nil, style: .alert) { [unowned self] city in
@@ -30,7 +38,9 @@ class ViewController: UIViewController {
             self.updateInterfaceWith(weather: currentWeather)
         }
 
-        networkWeatherManager.fetchCurrentWeather(forCity: "London")
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocation()
+        }
     }
     
     func updateInterfaceWith(weather: CurrentWeather) {
@@ -40,6 +50,20 @@ class ViewController: UIViewController {
             self.feelsLikeTemperatureLabel.text = weather.feelsLikeTemperatureString
             self.weatherIconImageView.image = UIImage(systemName: String(weather.systemIconNameString))
         }
+    }
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        
+        networkWeatherManager.fetchCurrentWeather(forLatitude: latitude, forLongitude: longitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }
 
