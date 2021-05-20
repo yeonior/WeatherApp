@@ -8,6 +8,7 @@
 import Foundation
 
 struct CurrentWeather {
+    
     let cityName: String
     
     let temperature: Double
@@ -22,6 +23,7 @@ struct CurrentWeather {
     
     let conditionCode: Int
     var systemIconNameString: String {
+        
         switch conditionCode {
         case 200...232:
             return "cloud.bolt.rain.fill"
@@ -43,6 +45,7 @@ struct CurrentWeather {
     }
     
     init?(currentWeatherData: CurrentWeatherData) {
+        
         cityName = currentWeatherData.name
         temperature = currentWeatherData.main.temp
         feelsLikeTemperature = currentWeatherData.main.feelsLike
